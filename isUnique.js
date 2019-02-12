@@ -18,8 +18,8 @@ const isUnique = string => {
     pointer2 = 1;
   while (pointer2 < sorted.length) {
     if (sorted[pointer1] === sorted[pointer2]) return false;
-    pointer1++;
-    pointer2++;
+    pointer1 += 2;
+    pointer2 += 2;
   }
   return true;
 };
