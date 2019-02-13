@@ -50,6 +50,8 @@ mergeRanges = meetings => {
   return mergedMeetings;
 };
 
+// O(n log(n))
+
 console.log(
   mergeRanges([
     { startTime: 0, endTime: 1 },
