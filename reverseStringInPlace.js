@@ -17,7 +17,7 @@ const reverseString = stringArray => {
   return stringArray;
 };
 
-// O(log n)
+// O(n)
 
 console.log(reverseString(["c", "a", "r"]));
 console.log(reverseString(["b", "o", "a", "t"]));
