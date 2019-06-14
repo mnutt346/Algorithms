@@ -37,6 +37,27 @@ class LinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    let oldHead = this.head;
+    this.head = this.head.next;
+    this.length--;
+    return oldHead;
+  }
+
+  unshift(val) {
+    if (this.length === 0) {
+      this.push(new Node(val));
+    }
+    let newHead = new Node(val);
+    newHead.next = this.head;
+    this.head = newHead;
+  }
 }
 
 class Node {
@@ -55,4 +76,9 @@ console.log(list);
 list.push(3);
 list.push(4);
 list.pop();
+console.log(list);
+list.push(5);
+list.shift();
+console.log(list);
+list.unshift(7);
 console.log(list);
