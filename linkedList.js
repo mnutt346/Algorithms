@@ -110,6 +110,32 @@ class LinkedList {
     this.length--;
     return currentNode;
   }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let next,
+      prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
+
+  print() {
+    let store = [],
+      current = this.head;
+    while (current) {
+      store.push(current.val);
+      current = current.next;
+    }
+    console.log(store);
+  }
 }
 
 class Node {
@@ -137,7 +163,9 @@ console.log(list);
 console.log(list.get(0));
 console.log(list.set(8, 2));
 console.log(list.get(2));
-
+list.print();
+list.reverse();
+list.print();
 let newList = new LinkedList();
 
 newList.unshift("stuff");
