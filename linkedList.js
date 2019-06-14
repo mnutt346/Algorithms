@@ -9,7 +9,7 @@ class LinkedList {
     let newNode = new Node(val);
     if (!this.head) {
       this.head = newNode;
-      this.tail = newNode;
+      this.tail = this.head;
     } else {
       this.tail.next = newNode;
       this.tail = newNode;
@@ -51,12 +51,34 @@ class LinkedList {
   }
 
   unshift(val) {
+    let newHead = new Node(val);
     if (this.length === 0) {
       this.push(new Node(val));
+    } else {
+      newHead.next = this.head;
+      this.head = newHead;
+      this.length++;
     }
-    let newHead = new Node(val);
-    newHead.next = this.head;
-    this.head = newHead;
+    return this;
+  }
+
+  get(position) {
+    if (position < 0 || position >= this.length) return null;
+    let currentNode = this.head;
+    for (let i = 0; i < position; i++) {
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
+
+  set(val, position) {
+    let targetNode = this.get(position);
+    if (targetNode) {
+      targetNode.val = val;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
@@ -82,3 +104,23 @@ list.shift();
 console.log(list);
 list.unshift(7);
 console.log(list);
+
+let newList = new LinkedList();
+
+newList.unshift("stuff");
+console.log(newList);
+newList.push("more stuff");
+newList.push("asdf");
+newList.push("banana");
+console.log(newList.get(1));
+console.log(newList.get(3));
+console.log(newList.get(-2));
+console.log(newList.length);
+newList.unshift("ggggg");
+console.log(newList.length);
+console.log(newList.get(4));
+newList.set("bbbbb", 4);
+newList.set("fdsa", 1);
+console.log(newList.get(4));
+console.log(newList.get(3));
+console.log(newList);
