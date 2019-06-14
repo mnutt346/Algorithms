@@ -96,6 +96,20 @@ class LinkedList {
       this.length++;
     }
   }
+
+  remove(position) {
+    if (position < 0 || position >= this.length) return undefined;
+    if (position === this.length - 1) return this.pop();
+    if (position === 0) return this.shift();
+
+    let leftNode = this.get(position - 1),
+      currentNode = leftNode.next,
+      rightNode = currentNode.next;
+
+    leftNode.next = rightNode;
+    this.length--;
+    return currentNode;
+  }
 }
 
 class Node {
@@ -145,3 +159,6 @@ console.log(newList.get(3));
 console.log(newList);
 newList.insert("AAASDFDSF", 3);
 console.log(newList.get(3));
+console.log(newList.remove(3));
+console.log(newList.get(3));
+console.log(newList.get(2));
