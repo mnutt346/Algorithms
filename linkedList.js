@@ -40,10 +40,7 @@ class LinkedList {
 
   shift() {
     if (!this.head) return undefined;
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
-    }
+
     let oldHead = this.head;
     this.head = this.head.next;
     this.length--;
@@ -53,7 +50,9 @@ class LinkedList {
   unshift(val) {
     let newHead = new Node(val);
     if (this.length === 0) {
-      this.push(new Node(val));
+      this.head = newHead;
+      this.tail = newHead;
+      this.length++;
     } else {
       newHead.next = this.head;
       this.head = newHead;
@@ -80,6 +79,23 @@ class LinkedList {
       return false;
     }
   }
+
+  insert(val, position) {
+    if (position < 0 || position > this.length) return false;
+    let newNode = new Node(val);
+    if (position === this.length) {
+      return !!this.push(val);
+    } else if (position === 0) {
+      return !!this.unshift(val);
+    } else {
+      let leftNode = this.get(position - 1),
+        rightNode = leftNode.next;
+
+      leftNode.next = newNode;
+      newNode.next = rightNode;
+      this.length++;
+    }
+  }
 }
 
 class Node {
@@ -104,6 +120,9 @@ list.shift();
 console.log(list);
 list.unshift(7);
 console.log(list);
+console.log(list.get(0));
+console.log(list.set(8, 2));
+console.log(list.get(2));
 
 let newList = new LinkedList();
 
@@ -124,3 +143,5 @@ newList.set("fdsa", 1);
 console.log(newList.get(4));
 console.log(newList.get(3));
 console.log(newList);
+newList.insert("AAASDFDSF", 3);
+console.log(newList.get(3));
