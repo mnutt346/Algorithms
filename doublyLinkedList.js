@@ -76,6 +76,7 @@ class DoublyLinkedList {
     this.length++;
   }
 
+  // *********** get a node at a specified index ***********
   get(position) {
     if (position < 0 || position >= this.length) return null;
     let current;
@@ -91,6 +92,16 @@ class DoublyLinkedList {
       }
     }
     return current;
+  }
+
+  // *********** set the value of a node at a specified index to a new value ***********
+  set(val, position) {
+    let foundNode = this.get(position);
+    if (foundNode) {
+      foundNode.value = val;
+      return true;
+    }
+    return false;
   }
 }
 
@@ -115,3 +126,9 @@ console.log(list.get(2));
 console.log(list.get(1));
 console.log(list.get(3));
 console.log(list.get(5));
+console.log(list.push(9));
+console.log(list.push(8));
+console.log(list);
+list.set(7, 5);
+console.log(list);
+console.log(list.set(3, 10));
