@@ -13,6 +13,7 @@ class DoublyLinkedList {
     this.tail = null;
   }
 
+  // *********** push value to end of list ***********
   push(val) {
     let newNode = new Node(val);
     if (!this.length) {
@@ -27,6 +28,7 @@ class DoublyLinkedList {
     return this;
   }
 
+  // *********** pop value off end of list ***********
   pop() {
     if (!this.length) {
       return undefined;
@@ -43,6 +45,22 @@ class DoublyLinkedList {
     this.length--;
     return poppedTail;
   }
+
+  // *********** remove value from beginning of list ***********
+  shift() {
+    if (!this.length) return undefined;
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -52,4 +70,10 @@ console.log(list);
 list.push(2);
 console.log(list);
 list.pop();
+console.log(list);
+list.push(3);
+list.push(4);
+list.push(5);
+console.log(list);
+list.shift();
 console.log(list);
