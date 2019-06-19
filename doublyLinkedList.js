@@ -12,4 +12,25 @@ class DoublyLinkedList {
     this.head = null;
     this.tail = null;
   }
+
+  push(val) {
+    let newNode = new Node(val);
+    if (!this.length) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
+
+let list = new DoublyLinkedList();
+
+list.push(1);
+console.log(list);
+list.push(2);
+console.log(list);
